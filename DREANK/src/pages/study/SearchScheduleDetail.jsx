@@ -1,15 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Select from 'react-select';
+import TimePicker from 'react-time-picker';
 import SearchStudy2 from './SearchStudy2';
 import StudyList from './StudyList';
 import './SearchStudy.css';
 import instance from '../../shared/Request';
 
+const daysOptions = [
+  { value: 'MON', label: '월요일' },
+  { value: 'TUE', label: '화요일' },
+  { value: 'WED', label: '수요일' },
+  { value: 'THU', label: '목요일' },
+  { value: 'FRI', label: '금요일' },
+  { value: 'SAT', label: '토요일' },
+  { value: 'SUN', label: '일요일' },
+];
+
 const SearchScheduleDetail = () => {
   const [tagContent, setTagContent] = useState('');
   const [preferredDay, setPreferredDay] = useState('');
-  const [preferredStartTime, setPreferredStartTime] = useState('');
-  const [preferredEndTime, setPreferredEndTime] = useState('');
+  const [preferredStartTime, setPreferredStartTime] = useState('00:00');
+  const [preferredEndTime, setPreferredEndTime] = useState('23:30');
   const [studies, setStudies] = useState([]);
   const [filteredStudies, setFilteredStudies] = useState([]);
   const [titleText, setTitleText] = useState('내 일정에 맞는 모임');
@@ -36,9 +48,9 @@ const SearchScheduleDetail = () => {
     try {
       const params = new URLSearchParams({
         tagContent,
-        preferredDay,
-        preferredStartTime,
-        preferredEndTime
+        preferredDay: preferredDay.value,
+        preferredStartTime: `${preferredStartTime}:00`,
+        preferredEndTime: `${preferredEndTime}:00`
       });
 
       const url = `/user/${localStorage.getItem('user_id')}/calendar/filterByTagAndTime?${params.toString()}`;
@@ -59,13 +71,35 @@ const SearchScheduleDetail = () => {
   return (
     <div className='entire-study-page'>
       <div className='title'>일정으로 모임 찾기</div>
-      <SearchStudy2
-        setTagContent={setTagContent}
-        setPreferredDay={setPreferredDay}
-        setPreferredStartTime={setPreferredStartTime}
-        setPreferredEndTime={setPreferredEndTime}
-        onSearch={handleSearch}
-      />
+      <div className='search-container'>
+        <input
+          type="text"
+          placeholder="태그를 입력하세요"
+          value={tagContent}
+          onChange={(e) => setTagContent(e.target.value)}
+          className="input-tag"
+        />
+        <Select
+          options={daysOptions}
+          placeholder="요일을 선택하세요"
+          value={preferredDay}
+          onChange={(option) => setPreferredDay(option)}
+          className="input-select"
+        />
+        <TimePicker
+          onChange={setPreferredStartTime}
+          value={preferredStartTime}
+          disableClock={true}
+          className="input-time-picker"
+        />
+        <TimePicker
+          onChange={setPreferredEndTime}
+          value={preferredEndTime}
+          disableClock={true}
+          className="input-time-picker"
+        />
+        <button onClick={handleSearch} className="search-button">검색</button>
+      </div>
       <div className="study-title2">{titleText}</div>
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       <StudyList studies={filteredStudies} />

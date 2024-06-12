@@ -28,7 +28,7 @@ import WritingEditor from './pages/board/WritingEditor';
 import PostDetail from './pages/board/PostDetail'; 
 import SearchScheduleDetail from './pages/study/SearchScheduleDetail';
 import SearchStudyResult from './pages/study/SearchStudyResult';
-import StudyHome from "./pages/study/studyhome";
+import StudyHome from "./pages/study/StudyHome";
 
 const RootWrap = styled.div`
   display: flex;

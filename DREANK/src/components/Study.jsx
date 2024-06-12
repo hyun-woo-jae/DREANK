@@ -57,8 +57,7 @@ export default function Study() {
           <Typography sx={{ fontSize: 14, color: "#666", mb: 2 }}>
             회원수: {study.members}명
           </Typography>
-          <Divider sx={{ mb: 2 }} />
-          <Button variant="outlined" sx={{ width: '100%' }}>
+          <Button variant="plane" sx={{ width: '100%' }}>
             탈퇴하기
           </Button>
         </Card>

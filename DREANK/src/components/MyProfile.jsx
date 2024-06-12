@@ -109,7 +109,7 @@ export default function MyProfile() {
                 mt: 2,
               }}
             >
-              <Button onClick={handleSave}>저장</Button>
+              <Button sx={{backgroundColor: "#334EAC",}}onClick={handleSave}>저장</Button>
             </Box>
           </Box>
         </Stack>
@@ -188,7 +188,7 @@ export default function MyProfile() {
               to="/mypage/mystudy"
               style={{ textDecoration: "none", color: "#007bff" }}
             >
-              <Button variant="text">내 스터디 관리</Button>
+              <Button variant="text">내가 만든 스터디 관리</Button>
             </Link>
           </Stack>
           <Divider />
