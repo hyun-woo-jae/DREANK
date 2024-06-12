@@ -151,7 +151,7 @@ export default function MyProfile() {
           <Divider />
           <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
             <Link
-              to="/password"
+              to="/mypage/password"
               style={{ textDecoration: "none", color: "#007bff" }}
             >
               <Button variant="text">비밀번호 변경</Button>
@@ -160,7 +160,7 @@ export default function MyProfile() {
           <Divider />
           <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
             <Link
-              to="/check"
+              to="/mypage/check"
               style={{ textDecoration: "none", color: "#007bff" }}
             >
               <Button variant="text">약관 확인</Button>
@@ -185,7 +185,7 @@ export default function MyProfile() {
         <Stack>
           <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
             <Link
-              to="/mystudy"
+              to="/mypage/mystudy"
               style={{ textDecoration: "none", color: "#007bff" }}
             >
               <Button variant="text">내 스터디 관리</Button>
@@ -194,7 +194,7 @@ export default function MyProfile() {
           <Divider />
           <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
             <Link
-              to="/study"
+              to="/mypage/study"
               style={{ textDecoration: "none", color: "#007bff" }}
             >
               <Button variant="text">가입한 스터디 관리</Button>
@@ -203,7 +203,7 @@ export default function MyProfile() {
           <Divider />
           <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
             <Link
-              to="/waiting"
+              to="/mypage/waiting"
               style={{ textDecoration: "none", color: "#007bff" }}
             >
               <Button variant="text">신청한 스터디 상태 조회</Button>
@@ -212,7 +212,7 @@ export default function MyProfile() {
           <Divider />
           <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
             <Link
-              to="/rejection_study"
+              to="/mypage/rejection_study"
               style={{ textDecoration: "none", color: "#007bff" }}
             >
               <Button variant="text">이용 제한 내역</Button>
@@ -235,27 +235,29 @@ export default function MyProfile() {
         </Typography>
         <Divider />
         <Stack>
-          <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
+        <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
             <Link
-              to="/comments"
-              style={{ textDecoration: "none", color: "#007bff" }}
-            >
-              <Button variant="text">댓글 관리</Button>
-            </Link>
-          </Stack>
-          <Divider />
-          <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
-            <Link
-              to="/posts"
+              to="/mypage/posts"
               style={{ textDecoration: "none", color: "#007bff" }}
             >
               <Button variant="text">게시글 관리</Button>
             </Link>
           </Stack>
           <Divider />
+          
           <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
             <Link
-              to="/rejection_post"
+              to="/mypage/comments"
+              style={{ textDecoration: "none", color: "#007bff" }}
+            >
+              <Button variant="text">댓글 관리</Button>
+            </Link>
+          </Stack>
+          <Divider />
+
+          <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
+            <Link
+              to="/mypage/rejection_post"
               style={{ textDecoration: "none", color: "#007bff" }}
             >
               <Button variant="text">이용 제한 내역</Button>
@@ -280,7 +282,7 @@ export default function MyProfile() {
         <Stack>
           <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
             <Link
-              to="/withdrawal"
+              to="/mypage/withdrawal"
               style={{ textDecoration: "none", color: "#007bff" }}
             >
               <Button variant="text">탈퇴하기</Button>
@@ -289,7 +291,7 @@ export default function MyProfile() {
           <Divider />
           <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
             <Link
-              to="/notification"
+              to="/mypage/notification"
               style={{ textDecoration: "none", color: "#007bff" }}
             >
               <Button variant="text">알림설정</Button>

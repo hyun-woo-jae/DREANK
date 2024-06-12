@@ -21,6 +21,7 @@ import Notification from "./components/Notification";
 import MakeStudy from "./pages/MakeStudy/MakeStudy";
 import styled from "styled-components";
 
+<<<<<<< Updated upstream
 import EntireBoard from "./pages/board/EntireBoard";
 import EntireBoardDetail from "./pages/board/EntireBoardDetail";
 import EntireStudy from "./pages/study/EntireStudy";
@@ -28,6 +29,16 @@ import WritingEditor from "./pages/board/WritingEditor";
 // import PostDetail from './pages/board/PostDetail';
 import SearchScheduleDetail from "./pages/study/SearchScheduleDetail";
 import SearchStudyResult from "./pages/study/SearchStudyResult";
+=======
+import EntireBoard from './pages/board/EntireBoard';
+import EntireBoardDetail from './pages/board/EntireBoardDetail';
+import EntireStudy from './pages/study/EntireStudy';
+import WritingEditor from './pages/board/WritingEditor';
+import PostDetail from './pages/board/PostDetail'; 
+import SearchScheduleDetail from './pages/study/SearchScheduleDetail';
+import SearchStudyResult from './pages/study/SearchStudyResult';
+import StudyHome from "./pages/study/StudyHome";
+>>>>>>> Stashed changes
 
 const RootWrap = styled.div`
   display: flex;
@@ -47,22 +58,25 @@ function App() {
     { path: "/mypage", component: MyPage },
     { path: "/chat", component: Chatting },
     { path: "/calendar", component: CalendarPage },
-    { path: "/password", component: Password },
-    { path: "/check", component: Check },
-    { path: "/mystudy", component: Mystudy },
-    { path: "/study", component: Study },
-    { path: "/waiting", component: Waiting },
-    { path: "/rejection_study", component: RejectionStudy },
-    { path: "/rejection_post", component: RejectionPost },
-    { path: "/comments", component: Comments },
-    { path: "/posts", component: Posts },
-    { path: "/Withdrawal", component: Withdrawal },
+
+    { path: "/mypage/password", component: Password },
+    { path: "/mypage/check", component: Check },
+    { path: "/mypage/mystudy", component: Mystudy },
+    { path: "/mypage/study", component: Study },
+    { path: "/mypage/waiting", component: Waiting },
+    { path: "/mypage/rejection_study", component: RejectionStudy },
+    { path: "/mypage/rejection_post", component: RejectionPost },
+    { path: "/mypage/comments", component: Comments },
+    { path: "/mypage/posts", component: Posts },
+    { path: "/mypage/Withdrawal", component: Withdrawal },
+
     { path: "/notification", component: Notification },
     { path: "/makestudy", component: MakeStudy },
     { path: "/board", component: EntireBoard },
     { path: "/board-detail", component: EntireBoardDetail },
     { path: "/board-editor", component: WritingEditor },
     { path: "/bord-postdetail", component: MakeStudy },
+    { path: "/study", component: StudyHome},
 
     { path: "/study-board", component: EntireStudy },
     { path: "/study-search-schedule", component: SearchScheduleDetail },
