@@ -32,18 +32,28 @@ const SearchScheduleDetail = () => {
     fetchInitialStudies();
   }, []);
 
-  const handleSearch = () => {
-    const filtered = studies.filter(study => {
-      const isTagMatch = tagContent ? study.tag.includes(tagContent) : true;
-      const isDayMatch = preferredDay ? study.day === preferredDay : true;
-      const isStartTimeMatch = preferredStartTime ? study.start_time >= preferredStartTime : true;
-      const isEndTimeMatch = preferredEndTime ? study.end_time <= preferredEndTime : true;
+  const handleSearch = async () => {
+    try {
+      const params = new URLSearchParams({
+        tagContent,
+        preferredDay,
+        preferredStartTime,
+        preferredEndTime
+      });
 
-      return isTagMatch && isDayMatch && isStartTimeMatch && isEndTimeMatch;
-    });
+      const url = `/user/${localStorage.getItem('user_id')}/calendar/filterByTagAndTime?${params.toString()}`;
+      console.log('Request URL:', url);
 
-    setFilteredStudies(filtered);
-    setTitleText('검색결과');
+      const response = await instance.get(url);
+      console.log(response);
+      if (response.status === 200) {
+        setStudies(response.data);
+        setTitleText('검색결과');
+      }
+    } catch (error) {
+      console.log(error);
+      setErrorMessage('데이터 전송에 실패하였습니다!');
+    }
   };
 
   return (
