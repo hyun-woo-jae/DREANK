@@ -1,6 +1,7 @@
 // import React from "react";
 import Board from "./Board"; // Board 컴포넌트 임포트
-import Board2 from "./Board2";
+import Board2 from "./Board2"; // Board 컴포넌트 임포트
+import Board3 from "./Board3";
 const CategoryBoard = () => {
   return (
     <div className="category-board-container">
@@ -20,9 +21,9 @@ const CategoryBoard = () => {
       />
 
       {/* 세 번째 게시판 */}
-      <Board
+      <Board3
         position="board right"
-        title="자유 게시판"
+        title="합격 수기"
         // explain="자유 게시판입니다"
       />
     </div>
