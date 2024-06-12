@@ -63,7 +63,6 @@ function App() {
     { path: "/makestudy", component: MakeStudy },
     { path: "/board", component: EntireBoard },
     { path: "/board-detail", component: EntireBoardDetail },
-    { path: "/board/board-detail", component: EntireBoardDetail },
     { path: "/board-editor", component: WritingEditor },
     { path: "/bord-postdetail", component: MakeStudy },
 

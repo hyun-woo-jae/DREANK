@@ -36,34 +36,36 @@ const SearchStudy2 = ({ setTagContent, setPreferredDay, setPreferredStartTime, s
 
   return (
     <div className="search-study2">
-      <input
-        type="search"
-        className="search-study-input2"
-        placeholder="태그"
-        onChange={(e) => setTagContent(e.target.value)}
-      />
-      <input
-        type="search"
-        className="search-study-input2"
-        placeholder="요일"
-        onChange={(e) => setPreferredDay(e.target.value)}
-      />
-      <input
-        type="text"
-        className="search-study-input2"
-        placeholder="시작 시간 (HH:MM:SS)"
-        value={startTime}
-        onChange={handleStartTimeChange}
-        onBlur={handleStartTimeBlur}
-      />
-      <input
-        type="text"
-        className="search-study-input2"
-        placeholder="끝 시간 (HH:MM:SS)"
-        value={endTime}
-        onChange={handleEndTimeChange}
-        onBlur={handleEndTimeBlur}
-      />
+      <div className="search-study-inputs">
+        <input
+          type="search"
+          className="search-study-input2"
+          placeholder="태그"
+          onChange={(e) => setTagContent(e.target.value)}
+        />
+        <input
+          type="search"
+          className="search-study-input2"
+          placeholder="요일"
+          onChange={(e) => setPreferredDay(e.target.value)}
+        />
+        <input
+          type="text"
+          className="search-study-input2"
+          placeholder="시작 시간 (HH:MM:SS)"
+          value={startTime}
+          onChange={handleStartTimeChange}
+          onBlur={handleStartTimeBlur}
+        />
+        <input
+          type="text"
+          className="search-study-input2"
+          placeholder="끝 시간 (HH:MM:SS)"
+          value={endTime}
+          onChange={handleEndTimeChange}
+          onBlur={handleEndTimeBlur}
+        />
+      </div>
       <button className="search-study-button2" onClick={onSearch}>검색</button>
     </div>
   );

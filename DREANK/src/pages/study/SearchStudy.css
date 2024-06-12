@@ -1,3 +1,8 @@
+.entire-study-page{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 .search-schedule-popup{
     display:flex;
     justify-content: center;
