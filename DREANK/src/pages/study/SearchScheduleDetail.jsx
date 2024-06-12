@@ -11,16 +11,17 @@ const SearchScheduleDetail = () => {
   const [preferredStartTime, setPreferredStartTime] = useState('');
   const [preferredEndTime, setPreferredEndTime] = useState('');
   const [studies, setStudies] = useState([]);
+  const [filteredStudies, setFilteredStudies] = useState([]);
   const [titleText, setTitleText] = useState('내 일정에 맞는 모임');
   const [errorMessage, setErrorMessage] = useState('');
 
-  // 첫 페이지 로드 시 내 일정에 맞는 스터디 그룹 조회
   useEffect(() => {
     const fetchInitialStudies = async () => {
       try {
         const response = await instance.get(`/user/${localStorage.getItem('user_id')}/calendar/searchGroupUsingCalendar`);
         if (response.status === 200) {
           setStudies(response.data);
+          setFilteredStudies(response.data); // 초기 데이터로 필터링된 목록도 설정
         }
       } catch (error) {
         console.log(error);
@@ -31,25 +32,18 @@ const SearchScheduleDetail = () => {
     fetchInitialStudies();
   }, []);
 
-  const handleSearch = async () => {
-    try {
-      const response = await instance.get(`/user/${localStorage.getItem('user_id')}/calendar/filterByTagAndTime`, {
-        params: {
-          tagContent,
-          preferredDay,
-          preferredStartTime,
-          preferredEndTime
-        }
-      });
-      console.log(response);
-      if (response.status === 200) {
-        setStudies(response.data);
-        setTitleText('검색결과');
-      }
-    } catch (error) {
-      console.log(error);
-      setErrorMessage('데이터 전송에 실패하였습니다!');
-    }
+  const handleSearch = () => {
+    const filtered = studies.filter(study => {
+      const isTagMatch = tagContent ? study.tag.includes(tagContent) : true;
+      const isDayMatch = preferredDay ? study.day === preferredDay : true;
+      const isStartTimeMatch = preferredStartTime ? study.start_time >= preferredStartTime : true;
+      const isEndTimeMatch = preferredEndTime ? study.end_time <= preferredEndTime : true;
+
+      return isTagMatch && isDayMatch && isStartTimeMatch && isEndTimeMatch;
+    });
+
+    setFilteredStudies(filtered);
+    setTitleText('검색결과');
   };
 
   return (
@@ -64,8 +58,8 @@ const SearchScheduleDetail = () => {
       />
       <div className="study-title2">{titleText}</div>
       {errorMessage && <div className="error-message">{errorMessage}</div>}
-      <StudyList studies={studies} />
-      <Link to='/study-make'>
+      <StudyList studies={filteredStudies} />
+      <Link to='/makestudy'>
         <button type="button" className="make-study-button right">+ 새 모임 만들기</button>
       </Link>
     </div>
