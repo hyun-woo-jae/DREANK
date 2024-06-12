@@ -59,13 +59,13 @@ const MakeStudy = () => {
 
   const handleDayClick = (day) => {
     const dayMap = {
-      "월요일": "MON",
-      "화요일": "TUE",
-      "수요일": "WED",
-      "목요일": "THU",
-      "금요일": "FRI",
-      "토요일": "SAT",
-      "일요일": "SUN"
+      월요일: "MON",
+      화요일: "TUE",
+      수요일: "WED",
+      목요일: "THU",
+      금요일: "FRI",
+      토요일: "SAT",
+      일요일: "SUN",
     };
     setSelectedDay(dayMap[day]);
     setSelectedDayDisplay(day);
@@ -121,7 +121,7 @@ const MakeStudy = () => {
         start_time: selectedStartTime,
         end_time: selectedEndTime,
         day: selectedDay, // Send the abbreviated day format
-        tag: tag
+        tag: tag,
       });
 
       if (response.status === 200) {

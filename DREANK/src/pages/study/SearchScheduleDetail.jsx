@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Select from 'react-select';
-import TimePicker from 'react-time-picker';
-import SearchStudy2 from './SearchStudy2';
-import StudyList from './StudyList';
 import './SearchStudy.css';
 import instance from '../../shared/Request';
+import StudyList from './StudyList';
 
 const daysOptions = [
   { value: 'MON', label: '월요일' },
@@ -17,11 +14,34 @@ const daysOptions = [
   { value: 'SUN', label: '일요일' },
 ];
 
+const timeOptions = Array.from({ length: 48 }, (_, i) => {
+  const hours = String(Math.floor(i / 2)).padStart(2, '0');
+  const minutes = i % 2 === 0 ? '00' : '30';
+  return { value: `${hours}:${minutes}:00`, label: `${hours}:${minutes}` };
+});
+
+const dayMap = {
+  MON: '월요일',
+  TUE: '화요일',
+  WED: '수요일',
+  THU: '목요일',
+  FRI: '금요일',
+  SAT: '토요일',
+  SUN: '일요일',
+};
+
+const formatTime = (time) => {
+  const [hour, minute, second] = time.split(':');
+  const period = hour < 12 ? 'AM' : 'PM';
+  const formattedHour = (hour % 12) || 12;
+  return `${period} ${String(formattedHour).padStart(2, '0')}:${minute}`;
+};
+
 const SearchScheduleDetail = () => {
   const [tagContent, setTagContent] = useState('');
   const [preferredDay, setPreferredDay] = useState('');
-  const [preferredStartTime, setPreferredStartTime] = useState('00:00');
-  const [preferredEndTime, setPreferredEndTime] = useState('23:30');
+  const [preferredStartTime, setPreferredStartTime] = useState('');
+  const [preferredEndTime, setPreferredEndTime] = useState('');
   const [studies, setStudies] = useState([]);
   const [filteredStudies, setFilteredStudies] = useState([]);
   const [titleText, setTitleText] = useState('내 일정에 맞는 모임');
@@ -32,6 +52,7 @@ const SearchScheduleDetail = () => {
       try {
         const response = await instance.get(`/user/${localStorage.getItem('user_id')}/calendar/searchGroupUsingCalendar`);
         if (response.status === 200) {
+          console.log(response.data)
           setStudies(response.data);
           setFilteredStudies(response.data); // 초기 데이터로 필터링된 목록도 설정
         }
@@ -49,8 +70,8 @@ const SearchScheduleDetail = () => {
       const params = new URLSearchParams({
         tagContent,
         preferredDay: preferredDay.value,
-        preferredStartTime: `${preferredStartTime}:00`,
-        preferredEndTime: `${preferredEndTime}:00`
+        preferredStartTime,
+        preferredEndTime
       });
 
       const url = `/user/${localStorage.getItem('user_id')}/calendar/filterByTagAndTime?${params.toString()}`;
@@ -72,40 +93,64 @@ const SearchScheduleDetail = () => {
     <div className='entire-study-page'>
       <div className='title'>일정으로 모임 찾기</div>
       <div className='search-container'>
-        <input
-          type="text"
-          placeholder="태그를 입력하세요"
-          value={tagContent}
-          onChange={(e) => setTagContent(e.target.value)}
-          className="input-tag"
-        />
-        <Select
-          options={daysOptions}
-          placeholder="요일을 선택하세요"
-          value={preferredDay}
-          onChange={(option) => setPreferredDay(option)}
-          className="input-select"
-        />
-        <TimePicker
-          onChange={setPreferredStartTime}
-          value={preferredStartTime}
-          disableClock={true}
-          className="input-time-picker"
-        />
-        <TimePicker
-          onChange={setPreferredEndTime}
-          value={preferredEndTime}
-          disableClock={true}
-          className="input-time-picker"
-        />
+        <div className='input-group'>
+          <label>태그</label>
+          <input
+            type="text"
+            placeholder="태그를 입력하세요"
+            value={tagContent}
+            onChange={(e) => setTagContent(e.target.value)}
+            className="input-tag"
+          />
+        </div>
+        <div className='input-group'>
+          <label>요일</label>
+          <Select
+            options={daysOptions}
+            placeholder="요일을 선택하세요"
+            value={preferredDay}
+            onChange={(option) => setPreferredDay(option)}
+            className="input-select"
+          />
+        </div>
+        <div className='input-group'>
+          <label>시작 시간</label>
+          <Select
+            options={timeOptions}
+            placeholder="시작 시간을 선택하세요"
+            value={timeOptions.find(option => option.value === preferredStartTime)}
+            onChange={(option) => setPreferredStartTime(option.value)}
+            className="input-time-picker"
+          />
+        </div>
+        <div className='input-group'>
+          <label>종료 시간</label>
+          <Select
+            options={timeOptions}
+            placeholder="종료 시간을 선택하세요"
+            value={timeOptions.find(option => option.value === preferredEndTime)}
+            onChange={(option) => setPreferredEndTime(option.value)}
+            className="input-time-picker"
+          />
+        </div>
         <button onClick={handleSearch} className="search-button">검색</button>
       </div>
       <div className="study-title2">{titleText}</div>
       {errorMessage && <div className="error-message">{errorMessage}</div>}
-      <StudyList studies={filteredStudies} />
-      <Link to='/makestudy'>
-        <button type="button" className="make-study-button right">+ 새 모임 만들기</button>
-      </Link>
+      <div className='study-list'>
+        {filteredStudies.length > 0 ? (
+          filteredStudies.map(study => (
+            <div key={study.id} className='study-card'>
+              <h3>{study.name}</h3>
+              <p>태그: {study.tag}</p>
+              <p>요일: {dayMap[study.day]}</p>
+              <p>시간: {formatTime(study.startTime)} - {formatTime(study.endTime)}</p>
+            </div>
+          ))
+        ) : (
+          <div className='no-results'>검색 결과가 없습니다.</div>
+        )}
+      </div>
     </div>
   );
 };

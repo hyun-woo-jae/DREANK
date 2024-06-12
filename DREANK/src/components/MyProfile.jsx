@@ -22,7 +22,6 @@ export default function MyProfile() {
         const userData = response.data;
         setNickname(userData.nickname);
         setIntroduce(userData.introduce);
-
       } catch (error) {
         console.error("유저 데이터를 불러오는 중 오류 발생:", error);
       }
@@ -57,7 +56,7 @@ export default function MyProfile() {
     >
       <Typography
         variant="h4"
-        sx={{ mb: 4, color: "#334EAC", fontWeight: "bold", fontSize: 30 }}
+        sx={{ mb: 4, color: "black", fontWeight: "bold", fontSize: 30 }}
       >
         마이페이지
       </Typography>
@@ -235,7 +234,7 @@ export default function MyProfile() {
         </Typography>
         <Divider />
         <Stack>
-        <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
+          <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
             <Link
               to="/mypage/posts"
               style={{ textDecoration: "none", color: "#007bff" }}
@@ -244,7 +243,7 @@ export default function MyProfile() {
             </Link>
           </Stack>
           <Divider />
-          
+
           <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
             <Link
               to="/mypage/comments"

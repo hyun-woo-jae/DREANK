@@ -4,14 +4,14 @@ import "./Study.css";
 
 const Study = ({ post }) => {
   return (
-    <div className='study-container'>
-      <div className='study-title'>{post.name}</div>
-      <div className='study-info'>{post.introduction}</div>
-      <div className='study-info'>모집 인원: {post.num_recruit}</div>
-      <div className='study-info'>시작 시간: {post.start_time}</div>
-      <div className='study-info'>종료 시간: {post.end_time}</div>
-      <div className='study-info'>요일: {post.day}</div>
-      <div className='study-info'>태그: {post.tag}</div>
+    <div className="study-container">
+      <div className="study-title">{post.name}</div>
+      <div className="study-info">{post.introduction}</div>
+      <div className="study-info">모집 인원: {post.num_recruit}</div>
+      <div className="study-info">시작 시간: {post.start_time}</div>
+      <div className="study-info">종료 시간: {post.end_time}</div>
+      <div className="study-info">요일: {post.day}</div>
+      <div className="study-info">태그: {post.tag}</div>
     </div>
   );
 };

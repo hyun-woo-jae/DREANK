@@ -4,7 +4,7 @@ export const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #334eac;
+  color: black;
   text-align: center;
 `;
 
