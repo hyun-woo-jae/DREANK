@@ -74,7 +74,7 @@ const Navbar = () => {
         )}
         <t.NavItem
           as={Link}
-          to="/makestudy"
+          to="/study"
           onClick={() => handleNavItemClick("makestudy")}
           active={activeNavItem === "makestudy"}
         >
