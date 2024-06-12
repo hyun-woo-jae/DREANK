@@ -2,7 +2,7 @@ import React from 'react';
 import './Study.css';
 import axios from 'axios';
 
-const PopularStudy = ({ position, title, explain, username }) => {
+const PopularStudy = ({ position, title, explain }) => {
     const handleJoinClick = async () => {
         try {
             // Ensure the URL is correct; previously had a redundant 'http://'
