@@ -36,8 +36,16 @@ const PasswordModal = ({ isOpen, onRequestClose, onSubmit }) => {
         },
       }}
     >
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        <h3>비밀번호를 입력하세요</h3>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 2,
+        }}
+      >
+        <h3>🔒비밀번호 입력🔒</h3>
+
         <TextField
           type="password"
           label="Password"
