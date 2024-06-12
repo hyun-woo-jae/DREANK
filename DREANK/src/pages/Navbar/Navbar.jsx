@@ -80,7 +80,14 @@ const Navbar = () => {
         >
           스터디
         </t.NavItem>
-        <t.NavItem>게시판</t.NavItem>
+        <t.NavItem
+          as={Link}
+          to="/board"
+          onClick={() => handleNavItemClick("board")}
+          active={activeNavItem === "board"}
+        >
+          게시판
+        </t.NavItem>
       </t.CenterSection>
 
       {/* 오른쪽 섹션 */}

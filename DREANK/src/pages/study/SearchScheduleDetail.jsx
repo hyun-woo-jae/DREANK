@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SearchStudy2 from './SearchStudy2';
 import StudyList from './StudyList';
@@ -13,6 +13,23 @@ const SearchScheduleDetail = () => {
   const [studies, setStudies] = useState([]);
   const [titleText, setTitleText] = useState('내 일정에 맞는 모임');
   const [errorMessage, setErrorMessage] = useState('');
+
+  // 첫 페이지 로드 시 내 일정에 맞는 스터디 그룹 조회
+  useEffect(() => {
+    const fetchInitialStudies = async () => {
+      try {
+        const response = await instance.get(`/user/${localStorage.getItem('user_id')}/calendar/searchGroupUsingCalendar`);
+        if (response.status === 200) {
+          setStudies(response.data);
+        }
+      } catch (error) {
+        console.log(error);
+        setErrorMessage('데이터 전송에 실패하였습니다!');
+      }
+    };
+
+    fetchInitialStudies();
+  }, []);
 
   const handleSearch = async () => {
     try {

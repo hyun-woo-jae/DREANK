@@ -26,7 +26,7 @@ const EntireStudy=()=>{
             <br/>
             <br/>
             <SearchScheduleStudy></SearchScheduleStudy>
-            <StudyList></StudyList>
+            {/* <StudyList></StudyList> */}
         </div>
     )
 }
