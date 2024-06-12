@@ -18,7 +18,7 @@ const StudyHome = () => {
         gutterBottom
         sx={{ display: "flex", justifyContent: "center", mb: 3, color: "#334EAC" }}
       >
-        스터디 바로 가기
+        스터디 찾기
       </Typography>
 
       <Grid container spacing={3} sx={{ mb: 3, justifyContent: "center" }}>
