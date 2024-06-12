@@ -40,3 +40,14 @@
 .read-the-docs {
   color: #888;
 }
+
+/* App.css */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.main-content {
+  flex: 1;
+  /* 추가적인 메인 콘텐츠 스타일 */
+}

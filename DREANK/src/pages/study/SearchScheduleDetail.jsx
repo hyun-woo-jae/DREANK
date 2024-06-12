@@ -47,7 +47,7 @@ const SearchScheduleDetail = () => {
   };
 
   return (
-    <div className='entire-board-page'>
+    <div className='entire-study-page'>
       <div className='title'>일정으로 모임 찾기</div>
       <SearchStudy2
         setTagContent={setTagContent}
