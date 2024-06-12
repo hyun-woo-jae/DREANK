@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import Typography from "@mui/joy/Typography";
@@ -15,7 +16,7 @@ const studies = [
     name: "History Enthusiasts",
     field: "Humanities",
     members: 8,
-  }
+  },
 ];
 
 export default function Study() {
@@ -57,7 +58,7 @@ export default function Study() {
           <Typography sx={{ fontSize: 14, color: "#666", mb: 2 }}>
             회원수: {study.members}명
           </Typography>
-          <Button variant="plane" sx={{ width: '100%' }}>
+          <Button variant="plane" sx={{ width: "100%" }}>
             탈퇴하기
           </Button>
         </Card>

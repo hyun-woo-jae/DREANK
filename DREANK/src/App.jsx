@@ -27,7 +27,7 @@ import EntireStudy from "./pages/study/EntireStudy";
 import WritingEditor from "./pages/board/WritingEditor";
 import SearchScheduleDetail from "./pages/study/SearchScheduleDetail";
 import SearchStudyResult from "./pages/study/SearchStudyResult";
-import StudyHome from "./pages/study/StudyHome";
+import StudyHome from "./pages/study/studyhome";
 
 const RootWrap = styled.div`
   display: flex;
