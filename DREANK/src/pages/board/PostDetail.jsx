@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import CommentList from './CommentList';
 
 function PostDetail() {
   const { id } = useParams();
@@ -17,7 +16,6 @@ function PostDetail() {
     <div className="PostDetail">
       <h1>{post.title}</h1>
       <p>{post.content}</p>
-      <CommentList postId={id} />
     </div>
   );
 }
