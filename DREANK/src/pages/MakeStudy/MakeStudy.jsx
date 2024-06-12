@@ -5,6 +5,7 @@ import instance from "../../shared/Request";
 
 const MakeStudy = () => {
   const username = localStorage.getItem("nickname");
+  const userId = localStorage.getItem("user_id");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -114,7 +115,7 @@ const MakeStudy = () => {
 
   const handleJoin = async () => {
     try {
-      const response = await instance.post("/study/post", {
+      const response = await instance.post(`/study/post/${userId}`, {
         name: name,
         introduction: introduction,
         num_recruit: parseInt(num), // Ensure num_recruit is a number
