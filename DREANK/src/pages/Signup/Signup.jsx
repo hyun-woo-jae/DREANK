@@ -160,7 +160,7 @@ const Signup = () => {
   return (
     <t.Container>
       <t.Title>
-        <h3>회원가입 페이지</h3>
+        <h3>회원가입</h3>
       </t.Title>
       <t.InputContainer>
         <input

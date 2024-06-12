@@ -10,26 +10,26 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-const handleLogin = async () => {
-  try {
-    const response = await instance.post('/login', { email, password });
-    console.log(response);
-    if (response.status === 200) {
-      localStorage.setItem("email", response.data.email)
-      localStorage.setItem("nickname", response.data.nickname)
-      localStorage.setItem("user_id", response.data.user_id)
-      window.location.href = "/";
+  const handleLogin = async () => {
+    try {
+      const response = await instance.post("/login", { email, password });
+      console.log(response);
+      if (response.status === 200) {
+        localStorage.setItem("email", response.data.email);
+        localStorage.setItem("nickname", response.data.nickname);
+        localStorage.setItem("user_id", response.data.user_id);
+        window.location.href = "/";
+      }
+    } catch (error) {
+      console.log(error);
+      setErrorMessage("로그인에 실패했습니다!");
     }
-  } catch (error) {
-    console.log(error)
-    setErrorMessage("로그인에 실패했습니다!");
-  }
-};
+  };
 
   return (
     <t.Container>
       <t.Title>
-        <h3>로그인 페이지</h3>
+        <h3>로그인</h3>
       </t.Title>
       <t.InputContainer>
         <input

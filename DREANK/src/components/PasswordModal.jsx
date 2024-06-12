@@ -23,7 +23,7 @@ const PasswordModal = ({ isOpen, onRequestClose, onSubmit }) => {
       contentLabel="Password Required"
       style={{
         overlay: {
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          backgroundColor: "rgba(255, 255, 255, 1)",
         },
         content: {
           top: "50%",
@@ -36,7 +36,7 @@ const PasswordModal = ({ isOpen, onRequestClose, onSubmit }) => {
         },
       }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
         <h2>Enter Password</h2>
         <TextField
           type="password"
