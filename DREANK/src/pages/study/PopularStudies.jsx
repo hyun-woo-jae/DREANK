@@ -1,5 +1,3 @@
-import React from 'react';
-
 import './Study.css';
 
 import PopularStudy from './PopularStudy';

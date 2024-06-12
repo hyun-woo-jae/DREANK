@@ -22,6 +22,7 @@ const MakeStudy = () => {
   const [numError, setNumError] = useState("모집 인원을 입력해주세요");
   const [isValid, setIsValid] = useState(false);
   const [selectedDay, setSelectedDay] = useState("");
+  const [selectedDayDisplay, setSelectedDayDisplay] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedStartTime, setSelectedStartTime] = useState("");
   const [selectedEndTime, setSelectedEndTime] = useState("");
@@ -57,7 +58,17 @@ const MakeStudy = () => {
   };
 
   const handleDayClick = (day) => {
-    setSelectedDay(day);
+    const dayMap = {
+      "월요일": "MON",
+      "화요일": "TUE",
+      "수요일": "WED",
+      "목요일": "THU",
+      "금요일": "FRI",
+      "토요일": "SAT",
+      "일요일": "SUN"
+    };
+    setSelectedDay(dayMap[day]);
+    setSelectedDayDisplay(day);
     setShowDropdown(false);
   };
 
@@ -109,11 +120,12 @@ const MakeStudy = () => {
         num_recruit: parseInt(num), // Ensure num_recruit is a number
         start_time: selectedStartTime,
         end_time: selectedEndTime,
-        day: selectedDay.toUpperCase(), // Convert to uppercase to match the backend format
-        tagList: tag.split(",").map((tag) => ({ content: tag.trim() })), // Convert tag string to tagList array of objects
+        day: selectedDay, // Send the abbreviated day format
+        tag: tag
       });
 
       if (response.status === 200) {
+        console.log(response);
         alert("스터디가 성공적으로 생성되었습니다!");
         navigate("/study-board"); // 생성 후 다른 페이지로 이동하도록 설정
       }
@@ -158,7 +170,7 @@ const MakeStudy = () => {
         <input
           id="weekdays_input"
           type="text"
-          value={selectedDay || "요일"}
+          value={selectedDayDisplay || "요일"}
           onChange={() => {}}
           placeholder="요일"
           onClick={toggleDropdown}
