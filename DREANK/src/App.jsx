@@ -21,15 +21,6 @@ import Notification from "./components/Notification";
 import MakeStudy from "./pages/MakeStudy/MakeStudy";
 import styled from "styled-components";
 
-<<<<<<< Updated upstream
-import EntireBoard from "./pages/board/EntireBoard";
-import EntireBoardDetail from "./pages/board/EntireBoardDetail";
-import EntireStudy from "./pages/study/EntireStudy";
-import WritingEditor from "./pages/board/WritingEditor";
-// import PostDetail from './pages/board/PostDetail';
-import SearchScheduleDetail from "./pages/study/SearchScheduleDetail";
-import SearchStudyResult from "./pages/study/SearchStudyResult";
-=======
 import EntireBoard from './pages/board/EntireBoard';
 import EntireBoardDetail from './pages/board/EntireBoardDetail';
 import EntireStudy from './pages/study/EntireStudy';
@@ -37,8 +28,7 @@ import WritingEditor from './pages/board/WritingEditor';
 import PostDetail from './pages/board/PostDetail'; 
 import SearchScheduleDetail from './pages/study/SearchScheduleDetail';
 import SearchStudyResult from './pages/study/SearchStudyResult';
-import StudyHome from "./pages/study/StudyHome";
->>>>>>> Stashed changes
+import StudyHome from "./pages/study/studyhome";
 
 const RootWrap = styled.div`
   display: flex;
