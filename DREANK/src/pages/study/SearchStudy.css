@@ -21,17 +21,18 @@
 .search-study2{
     text-align:middle;
     background-color: #334EAC;
-    width:60rem;
+    width:65rem;
     height:7rem;
-    padding:0.4rem 0.2rem;
+    padding:1rem 1.5rem;
     margin:3rem 0;
 }
 .search-study-input2{
     font-size:1rem;
     width:15rem;
     height:2.3rem;
-    padding:0.4rem 0.1rem;
+    padding:0.2rem 0.1rem;
     margin: 0.2rem;
+    border-radius: 0.3rem;
 }
 
 .search-study-button2{
@@ -39,8 +40,9 @@
     color:white;
     background-color: black;
     width:20rem;
-    margin: 0.8rem;
+    margin: 0.1rem;
     padding:0.5rem;
+    border-radius: 0.7rem;
 }
 
 .study-title2{
