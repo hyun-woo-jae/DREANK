@@ -1,38 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import Typography from "@mui/joy/Typography";
 import Card from "@mui/joy/Card";
-import Divider from "@mui/joy/Divider";
 import CardActions from "@mui/joy/CardActions";
-import axios from "axios";
+import instance from "../shared/Request";
 
-// Sample data for studies
-const studies = [
-  {
-    id: 1,
-    name: "Data Science Study Group",
-    field: "Computer Science",
-    members: 12,
-  },
-  {
-    id: 2,
-    name: "History Enthusiasts",
-    field: "Humanities",
-    members: 8,
-  }
-];
 
 export default function Mystudy() {
+  const [studies, setStudies] = useState([]);
+
+  useEffect(() => {
+    // 스터디 데이터를 가져오는 함수
+    const fetchStudies = async () => {
+      try {
+        const response = await instance.get(`/study/search/my/${localStorage.getItem('user_id')}`);
+        setStudies(response.data);
+      } catch (error) {
+        console.error("Failed to fetch studies:", error);
+      }
+    };
+
+    fetchStudies();
+  }, []);
+
   const handleEndRecruitment = async (studyId) => {
     try {
-      await axios.put(`/study/${studyId}/status`, {
+      await instance.put(`/study/${studyId}/status`, {
         status: "COMPLETE"
       });
       alert("스터디 모집이 종료되었습니다.");
+      setStudies(studies.map(study => study.id === studyId ? { ...study, status: "COMPLETE" } : study));
     } catch (error) {
       console.error("Error ending recruitment", error);
       alert("모집 종료 중 오류가 발생했습니다.");
+    }
+  };
+
+  const handleDeleteStudy = async (studyId) => {
+    try {
+      await instance.delete(`/study/${studyId}`);
+      alert("스터디가 삭제되었습니다.");
+      setStudies(studies.filter(study => study.id !== studyId));
+    } catch (error) {
+      console.error("Error deleting study", error);
+      alert("스터디 삭제 중 오류가 발생했습니다.");
     }
   };
 
@@ -69,12 +81,15 @@ export default function Mystudy() {
             {study.name}
           </Typography>
           <Typography sx={{ fontSize: 14, color: "#666" }}>
-            #{study.field}
+            #{study.tag}
           </Typography>
           <Typography sx={{ fontSize: 14, color: "#666", mb: 2 }}>
-            회원수: {study.members}명
+            회원수: {study.num_recruit}명
           </Typography>
-          <CardActions sx={{ display: 'flex', justifyContent: 'space-between', mt:2 }}>
+          <Typography sx={{ fontSize: 14, color: "#666", mb: 2 }}>
+            상태: {study.status}
+          </Typography>
+          <CardActions sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
             <Button
               variant="plane"
               sx={{ width: '48%' }}
@@ -82,7 +97,11 @@ export default function Mystudy() {
             >
               모집 종료
             </Button>
-            <Button variant="plane" sx={{ width: '48%' }}>
+            <Button
+              variant="plane"
+              sx={{ width: '48%' }}
+              onClick={() => handleDeleteStudy(study.id)}
+            >
               삭제하기
             </Button>
           </CardActions>
