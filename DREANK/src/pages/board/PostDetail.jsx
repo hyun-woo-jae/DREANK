@@ -1,7 +1,10 @@
 // import React,
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+<<<<<<< HEAD
 // import CommentList from "./CommentList";
+=======
+>>>>>>> 285b402a42321783900fed5cf9745d34b7bffec6
 
 function PostDetail() {
   const { id } = useParams();
