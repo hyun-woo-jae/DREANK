@@ -12,10 +12,15 @@ const Board = ({ pagelink, position, title, explain }) => {
       <div className="board-ex">{explain}</div>
       <br />
       <div className="board-writing">강남/토익스터디</div>
+      <hr className="board-divider" />
       <div className="board-writing">삼성 코테준비 같이해요!!</div>
-      <div className="board-writing">네이버 최종면접 준비 같이하실분?</div>
+      <hr className="board-divider" />
+      <div className="board-writing">네이버 최종면접</div>
+      <hr className="board-divider" />
       <div className="board-writing">오픽 연습 같이해요</div>
+      <hr className="board-divider" />
       <div className="board-writing">토익800점목표</div>
+      <hr className="board-divider" />
       <Link to={pagelink}>
         <button type="button" className="detail-button">
           더보기

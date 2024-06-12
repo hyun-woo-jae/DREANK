@@ -6,9 +6,12 @@ import "./Board.css";
 const EntireBoard = () => {
   return (
     <div className="entire-board-page">
-      <div className="title">전체 게시판</div>
+      <div className="title">🔥 HOT 게시판 🔥</div>
       <PopularBoard />
-      <h3>카테고리</h3>
+      <div className="Category">
+        <h3>📌카테고리</h3>
+      </div>
+
       <CategoryBoard />
     </div>
   );
