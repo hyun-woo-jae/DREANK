@@ -33,7 +33,7 @@ const EntireStudy = () => {
         모임 찾기
       </Typography>
       <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
-        <Input placeholder="Placeholder" sx={{ width: "790px" }} />
+        <Input placeholder="Placeholder" sx={{ width: "780px" }} />
         <Button sx={{ ml: 2, backgroundColor: "#334EAC" }}>검색</Button>
       </Box>
       <Typography
@@ -102,9 +102,6 @@ const EntireStudy = () => {
         </Grid>
         <Grid item xs={12} md={2} sx={{ display: "flex", justifyContent: "center" }}></Grid>
       </Grid>
-      <Box sx={{ mt: 10 }}> {/* 간격 추가 */}
-        <SearchScheduleStudy />
-      </Box>
     </Box>
   );
 };

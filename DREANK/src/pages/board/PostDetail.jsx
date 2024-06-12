@@ -3,8 +3,11 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 <<<<<<< HEAD
 // import CommentList from "./CommentList";
+<<<<<<< Updated upstream
 =======
 >>>>>>> 285b402a42321783900fed5cf9745d34b7bffec6
+=======
+>>>>>>> Stashed changes
 
 function PostDetail() {
   const { id } = useParams();
@@ -21,6 +24,10 @@ function PostDetail() {
     <div className="PostDetail">
       <h1>{post.title}</h1>
       <p>{post.content}</p>
+<<<<<<< Updated upstream
+=======
+      {/* <CommentList postId={id} /> */}
+>>>>>>> Stashed changes
     </div>
   );
 }

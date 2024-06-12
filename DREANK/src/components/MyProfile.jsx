@@ -235,6 +235,16 @@ export default function MyProfile() {
         </Typography>
         <Divider />
         <Stack>
+        <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
+            <Link
+              to="/mypage/posts"
+              style={{ textDecoration: "none", color: "#007bff" }}
+            >
+              <Button variant="text">게시글 관리</Button>
+            </Link>
+          </Stack>
+          <Divider />
+          
           <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
             <Link
               to="/mypage/comments"
@@ -244,15 +254,7 @@ export default function MyProfile() {
             </Link>
           </Stack>
           <Divider />
-          <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
-            <Link
-              to="/mypage/posts"
-              style={{ textDecoration: "none", color: "#007bff" }}
-            >
-              <Button variant="text">게시글 관리</Button>
-            </Link>
-          </Stack>
-          <Divider />
+
           <Stack direction="row" sx={{ justifyContent: "flex-start" }}>
             <Link
               to="/mypage/rejection_post"
