@@ -1,0 +1,75 @@
+.entire-board-page{
+    display: block;
+}
+.title{
+    font-size:2rem;
+    font-weight: bold;
+    color:#334EAC;
+    padding:1rem;
+}
+.popular-board{
+    border: 0.2rem solid #BAD6EB;
+    padding: 1rem;
+    margin:1rem;
+    width:50rem;
+}
+.popular-board-title{
+    font-size:1.3rem;
+    font-weight:bold;
+    text-align:left;
+}
+.writing-lists{
+    list-style-type:none;
+    padding:0.2rem;
+}
+.writing-list{
+    font-size:1rem;
+    text-align:left;
+    padding:0.2rem;
+}
+
+h3{
+    font-size:1.5rem;
+    text-align:left;
+}
+
+.board{
+    display:inline-block;
+    width:12rem;
+    height:18rem;
+    padding: 1.5rem;
+    margin:1rem;
+    box-shadow: 0 0 1px 1px rgba(99, 99, 99, 0.5);
+    border-radius: 0.5rem;
+
+}
+
+.left {
+    float: left; /* 왼쪽으로 정렬 */
+}
+.right {
+    float: right; /* 오른쪽으로 정렬 */
+}
+
+.board-title{
+    font-size:1.2rem;
+    font-weight:bold;
+    text-align:left;
+}
+.board-ex{
+    font-size:1rem;
+    text-align:left;
+}
+.board-writing{
+    font-size:1rem;
+    text-align:left;
+    padding:0.2rem;
+}
+
+.detail-button{
+    font-size:1rem;
+    color:white;
+    background-color: #334EAC;
+    width:10rem;
+    margin: 0.8rem;
+}

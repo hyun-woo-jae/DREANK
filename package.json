@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^41.4.2",
+    "@ckeditor/ckeditor5-react": "^7.0.0",
+    "styled-components": "^6.1.11",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "proxy": "http://localhost:8080"
+}
