@@ -1,24 +1,38 @@
+import React, { useEffect, useState } from "react";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import Typography from "@mui/joy/Typography";
 import Card from "@mui/joy/Card";
-import Divider from "@mui/joy/Divider";
-
-// Sample data for studies
-const studies = [
-  {
-    name: "Data Science Study Group",
-    field: "Computer Science",
-    members: 12,
-  },
-  {
-    name: "History Enthusiasts",
-    field: "Humanities",
-    members: 8,
-  }
-];
+import instance from "../shared/Request";
 
 export default function Waiting() {
+  const [studies, setStudies] = useState([]);
+  const userId = localStorage.getItem('user_id');
+
+  useEffect(() => {
+    const fetchStudies = async () => {
+      try {
+        const response = await instance.get(`/search/waiting/${userId}`);
+        setStudies(response.data);
+      } catch (error) {
+        console.error("Failed to fetch studies:", error);
+      }
+    };
+
+    fetchStudies();
+  }, [userId]);
+
+  const handleCancel = async (studyId) => {
+    try {
+      await instance.delete(`/search/waiting/${userId}/${studyId}`);
+      setStudies(studies.filter(study => study.id !== studyId));
+      alert('신청이 취소되었습니다.');
+    } catch (error) {
+      console.error("Failed to cancel study application:", error);
+      alert('신청 취소 중 오류가 발생했습니다.');
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -52,12 +66,16 @@ export default function Waiting() {
             {study.name}
           </Typography>
           <Typography sx={{ fontSize: 14, color: "#666" }}>
-            #{study.field}
+            #{study.tag}
           </Typography>
           <Typography sx={{ fontSize: 14, color: "#666", mb: 2 }}>
             회원수: {study.members}명
           </Typography>
-          <Button variant="plane" sx={{ width: '100%' }}>
+          <Button
+            variant="plain"
+            sx={{ width: '100%' }}
+            onClick={() => handleCancel(study.id)}
+          >
             신청 취소 하기
           </Button>
         </Card>

@@ -89,6 +89,19 @@ const SearchScheduleDetail = () => {
     }
   };
 
+  const handleJoin = async (studyId) => {
+    try {
+      const response = await instance.post(`/study/${studyId}/apply/${localStorage.getItem('user_id')}`, {
+      });
+      if (response.status === 200) {
+        alert('스터디에 성공적으로 신청되었습니다.');
+      }
+    } catch (error) {
+      console.error('스터디 신청 중 오류가 발생했습니다.', error);
+      alert('스터디 신청 중 오류가 발생했습니다.');
+    }
+  };
+
   return (
     <div className='entire-study-page'>
       <div className='title'>일정으로 모임 찾기</div>
@@ -145,6 +158,7 @@ const SearchScheduleDetail = () => {
               <p>태그: {study.tag}</p>
               <p>요일: {dayMap[study.day]}</p>
               <p>시간: {formatTime(study.startTime)} - {formatTime(study.endTime)}</p>
+              <button onClick={() => handleJoin(study.id)} className="search-button">신청하기</button>
             </div>
           ))
         ) : (
