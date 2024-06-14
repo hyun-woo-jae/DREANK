@@ -3,7 +3,24 @@ import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import Typography from "@mui/joy/Typography";
 import Card from "@mui/joy/Card";
-import instance from "../shared/Request"
+import instance from "../shared/Request";
+
+const dayMap = {
+  MON: "월요일",
+  TUE: "화요일",
+  WED: "수요일",
+  THU: "목요일",
+  FRI: "금요일",
+  SAT: "토요일",
+  SUN: "일요일",
+};
+
+const formatTime = (time) => {
+  const [hour, minute, second] = time.split(":");
+  const period = hour < 12 ? "AM" : "PM";
+  const formattedHour = (hour % 12) || 12;
+  return `${period} ${String(formattedHour).padStart(2, "0")}:${minute}`;
+};
 
 export default function Study() {
   const [studies, setStudies] = useState([]);
@@ -57,12 +74,18 @@ export default function Study() {
               {study.name}
             </Typography>
             <Typography sx={{ fontSize: 14, color: "#666" }}>
-              #{study.field}
+              {study.introduction}
+            </Typography>
+            <Typography sx={{ fontSize: 14, color: "#666" }}>
+              {study.tag}
+            </Typography>
+            <Typography sx={{ fontSize: 14, color: "#666" }}>
+              {dayMap[study.day]}
             </Typography>
             <Typography sx={{ fontSize: 14, color: "#666", mb: 2 }}>
-              회원수: {study.members}명
+              {formatTime(study.start_time)} - {formatTime(study.end_time)}
             </Typography>
-            <Button variant="plane" sx={{ width: "100%" }}>
+            <Button variant="plain" sx={{ width: "100%", color:"black" }}>
               탈퇴하기
             </Button>
           </Card>

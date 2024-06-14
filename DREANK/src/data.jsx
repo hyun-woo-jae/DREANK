@@ -44,7 +44,7 @@ export const chats = [
     messages: [
       {
         id: "1",
-        content: "안녕하세요! 고급웹프로그래밍 스터디 단톡방입니다:)",
+        content: "안녕하세요! Spring Boot 스터디 단톡방입니다:)",
         timestamp: "Wednesday 9:13am",
         sender: "You",
       },

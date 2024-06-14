@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Box,
@@ -10,16 +10,36 @@ import {
   CardContent,
   CardActions,
 } from "@mui/joy";
-import SearchScheduleStudy from "./SearchScheduleStudy";
+import instance from "../../shared/Request"; // Import instance
+import styled from 'styled-components';
 import "./Study.css";
 
-const EntireStudy = () => {
-  const [searchMode, setSearchMode] = React.useState("전체");
+// Example of a styled component using transient props
+const StyledButton = styled(Button)`
+  background-color: #334EAC;
+`;
 
-  const handleSearchModeChange = (event, newMode) => {
-    if (newMode !== null) {
-      setSearchMode(newMode);
-    }
+const EntireStudy = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [studies, setStudies] = useState([]);
+  const [searchExecuted, setSearchExecuted] = useState(false);
+
+  const handleInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearch = () => {
+    console.log("Searching for:", searchQuery);
+    instance.get(`/study/search/tag?tag=${searchQuery}`)
+      .then(response => {
+        console.log("Search response:", response.data);
+        setStudies(response.data);
+        setSearchExecuted(true);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the studies!', error);
+        setSearchExecuted(true);
+      });
   };
 
   return (
@@ -33,8 +53,13 @@ const EntireStudy = () => {
         모임 찾기
       </Typography>
       <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
-        <Input placeholder="Placeholder" sx={{ width: "780px" }} />
-        <Button sx={{ ml: 2, backgroundColor: "#334EAC" }}>검색</Button>
+        <Input 
+          placeholder="검색어를 입력하세요" 
+          sx={{ width: "780px" }} 
+          value={searchQuery}
+          onChange={handleInputChange}
+        />
+        <StyledButton sx={{ ml: 2 }} onClick={handleSearch}>검색</StyledButton>
       </Box>
       <Typography
         level="h5"
@@ -44,63 +69,34 @@ const EntireStudy = () => {
       >
         당신에게 맞는 모임을 찾아드릴게요!
       </Typography>
+      {searchExecuted && studies.length === 0 && (
+        <Typography
+          level="h6"
+          component="div"
+          gutterBottom
+          sx={{ display: "flex", justifyContent: "center", mb: 3 }}
+        >
+          0건의 검색결과
+        </Typography>
+      )}
       <Grid container spacing={3} sx={{ mb: 3, justifyContent: "center" }}>
-        <Grid item xs={12} md={2} sx={{ display: "flex", justifyContent: "center" }}></Grid>
-        <Grid item xs={12} md={8} sx={{ display: "flex", justifyContent: "center" }}>
-          <Card variant="outlined" sx={{ backgroundColor: "white", width: 200, height: 250, mr: 5 }}>
-            <CardContent>
-              <Typography level="h3">코테 대비 함께해요</Typography>
-              <Typography>#삼성 코테 준비</Typography>
-              <Typography>#프로그래머스</Typography>
-              <Typography>#8주 완성</Typography>
-              <Typography>#입문자 환영</Typography>
-            </CardContent>
-            <CardActions>
-              <Button sx={{ backgroundColor: "#334EAC" }}>Join!</Button>
-            </CardActions>
-          </Card>
-          <Card variant="outlined" sx={{ backgroundColor: "white", width: 200, height: 250, mr: 5, ml: 5 }}>
-            <CardContent>
-              <Typography level="h3">오픽 AL 스터디</Typography>
-              <Typography>Feature</Typography>
-              <Typography>Feature</Typography>
-              <Typography>Feature</Typography>
-              <Typography>Feature</Typography>
-            </CardContent>
-            <CardActions>
-              <Button sx={{ backgroundColor: "#334EAC" }}>Join!</Button>
-            </CardActions>
-          </Card>
-          <Box sx={{ position: "relative" }}>
-            <Card variant="outlined" sx={{ backgroundColor: "white", width: 200, height: 250, ml: 5 }}>
+        {studies.map((study, index) => (
+          <Grid key={index} item xs={12} md={4} sx={{ display: "flex", justifyContent: "center" }}>
+            <Card variant="outlined" sx={{ backgroundColor: "white", width: 300, height: 300, margin: 1 }}>
               <CardContent>
-                <Typography level="h3">스펙 같이 채워요</Typography>
-                <Typography>#개발자 포트폴리오</Typography>
-                <Typography>#백엔드</Typography>
-                <Typography>#프론트엔드</Typography>
-                <Typography>#네카라쿠배당토</Typography>
+                <Typography level="h5">이름: {study.name}</Typography>
+                <Typography>소개: {study.introduction}</Typography>
+                <Typography>모임 요일: {study.day}</Typography>
+                <Typography>시작 시간: {study.start_time}</Typography>
+                <Typography>종료 시간: {study.end_time}</Typography>
+                <Typography>태그: {study.tag}</Typography>
               </CardContent>
               <CardActions>
-                <Button sx={{ backgroundColor: "#334EAC" }}>Join!</Button>
+                <StyledButton>Join!</StyledButton>
               </CardActions>
             </Card>
-            <Link to="/makestudy">
-              <Button
-                variant="plain"
-                sx={{
-                  position: "absolute",
-                  bottom: 0,
-                  right: 0,
-                  color: "black",
-                  transform: "translate(10%, 130%)"
-                }}
-              >
-                + 새 모임 만들기
-              </Button>
-            </Link>
-          </Box>
-        </Grid>
-        <Grid item xs={12} md={2} sx={{ display: "flex", justifyContent: "center" }}></Grid>
+          </Grid>
+        ))}
       </Grid>
     </Box>
   );
